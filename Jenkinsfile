@@ -23,7 +23,7 @@ pipeline {
 
         stage('Run Playwright Tests') {
             steps {
-                bat 'npx playwright test login.spec.ts --reporter=html --output=playwright-report'
+                bat 'npx playwright test login.spec.js --reporter=html --output=playwright-report'
             }
         }
     }
