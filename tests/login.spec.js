@@ -95,7 +95,6 @@ test('login test2',async({browser})=>{
         console.log(cartText,i);
         if(cartText==='ZARA COAT 3'){
             await page.locator('.cartWrap .items').nth(i).locator('.btn-primary').click();
-            await page.pause();
             break;
         }   
     }
