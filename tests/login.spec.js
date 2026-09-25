@@ -1,75 +1,75 @@
 import{test,page,expect,browser} from'@playwright/test';
 
 
-test('login test',async({browser})=>{
+// test('login test',async({browser})=>{
 
-    const context = await browser.newContext();
-    const page = await context.newPage();
+//     const context = await browser.newContext();
+//     const page = await context.newPage();
 
-    const email = 's1a112232@gmail.com';
-    const mobile = '1234577720';
-    await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
-    //await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
-    // await page.locator("//section/a[contains(text(),'Register')]").click();
-    // await page.locator("#firstName").fill('John');
-    // await page.locator("#lastName").fill('Doe');
-    // await page.locator("#userEmail").fill(email);
-    // await page.locator("#userMobile").fill(mobile);
-    // await page.locator("#userPassword").fill('Password@123');
-    // await page.locator("#confirmPassword").fill('Password@123');
-    // await page.locator("//span[contains(text(),'Male')]").click();
-    // await page.locator("//select").selectOption('Engineer');
-    // await page.locator("//input[@type='checkbox']").check();
-    // await page.locator("#login").click();
-    // await page.waitForTimeout(2000);
-    // await expect(page.locator("//h1[contains(text(),'Account Created Successfully')]")).toContainText('Account Created Successfully');
+//     const email = 's1a112232@gmail.com';
+//     const mobile = '1234577720';
+//     await page.goto('https://rahulshettyacademy.com/loginpagePractise/');
+//     //await page.goto('https://rahulshettyacademy.com/client/#/auth/login');
+//     // await page.locator("//section/a[contains(text(),'Register')]").click();
+//     // await page.locator("#firstName").fill('John');
+//     // await page.locator("#lastName").fill('Doe');
+//     // await page.locator("#userEmail").fill(email);
+//     // await page.locator("#userMobile").fill(mobile);
+//     // await page.locator("#userPassword").fill('Password@123');
+//     // await page.locator("#confirmPassword").fill('Password@123');
+//     // await page.locator("//span[contains(text(),'Male')]").click();
+//     // await page.locator("//select").selectOption('Engineer');
+//     // await page.locator("//input[@type='checkbox']").check();
+//     // await page.locator("#login").click();
+//     // await page.waitForTimeout(2000);
+//     // await expect(page.locator("//h1[contains(text(),'Account Created Successfully')]")).toContainText('Account Created Successfully');
 
-    // await page.locator("//button[contains(text(),'Login')]").click();
-   /* await page.locator("#userEmail").fill(email);
-    await page.locator("#userPassword").fill('Password@123');
-    await page.locator("#login").click();
-    const starttime=Date.now();
-    await page.waitForLoadState('networkidle');
-    const endtime=Date.now();
-    console.log('Page load time:', endtime - starttime, 'ms');
-    let header=await page.locator('//b').allTextContents();
-    console.log(header);
+//     // await page.locator("//button[contains(text(),'Login')]").click();
+//    /* await page.locator("#userEmail").fill(email);
+//     await page.locator("#userPassword").fill('Password@123');
+//     await page.locator("#login").click();
+//     const starttime=Date.now();
+//     await page.waitForLoadState('networkidle');
+//     const endtime=Date.now();
+//     console.log('Page load time:', endtime - starttime, 'ms');
+//     let header=await page.locator('//b').allTextContents();
+//     console.log(header);
 
-    for(let head of header){
-        if(head==='ADIDAS ORIGINAL'){
-            console.log(head,': Header is present');
-        }
-}
-console.log(await page.title());
-await expect(page).toHaveTitle("Let Shop"); */
+//     for(let head of header){
+//         if(head==='ADIDAS ORIGINAL'){
+//             console.log(head,': Header is present');
+//         }
+// }
+// console.log(await page.title());
+// await expect(page).toHaveTitle("Let Shop"); */
 
-// const page2Promise= context.waitForEvent('page');
-// await page.locator("//a[contains(@href,'documents-request')]").click();
-// const page2 = await page2Promise;
-// await expect(page2).toHaveTitle("Document Request");
+// // const page2Promise= context.waitForEvent('page');
+// // await page.locator("//a[contains(@href,'documents-request')]").click();
+// // const page2 = await page2Promise;
+// // await expect(page2).toHaveTitle("Document Request");
 
-const [newpage] = await Promise.all([context.waitForEvent('page'),
-await page.locator("//a[contains(@href,'documents-request')]").click()
-]);
-await expect(newpage).toHaveTitle("RS Academy");
+// const [newpage] = await Promise.all([context.waitForEvent('page'),
+// await page.locator("//a[contains(@href,'documents-request')]").click()
+// ]);
+// await expect(newpage).toHaveTitle("RS Academy");
 
-let emailid=await newpage.locator(".red a").nth(0).textContent();
-console.log(emailid);
-emailid=emailid.split('@')[1];
-emailid=emailid.split(' ')[0];
-console.log(emailid);
-await newpage.close();
-await page.locator("#username").fill(emailid)
-await page.locator("select.form-control").selectOption('teach');
-await page.locator("select.form-control").selectOption({ label: "Student" });
-await page.pause();
-// await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
-}
-)
+// let emailid=await newpage.locator(".red a").nth(0).textContent();
+// console.log(emailid);
+// emailid=emailid.split('@')[1];
+// emailid=emailid.split(' ')[0];
+// console.log(emailid);
+// await newpage.close();
+// await page.locator("#username").fill(emailid)
+// await page.locator("select.form-control").selectOption('teach');
+// await page.locator("select.form-control").selectOption({ label: "Student" });
+// await page.pause();
+// // await expect(page).toHaveTitle("LoginPage Practise | Rahul Shetty Academy");
+// }
+// )
 
 
 
-test.only('login test2',async({browser})=>{
+test('login test2',async({browser})=>{
     const context = await browser.newContext();
     const page = await context.newPage();
     const email = 's1a112232@gmail.com';
