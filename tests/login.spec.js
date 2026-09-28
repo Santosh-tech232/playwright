@@ -1,4 +1,5 @@
 import{test,page,expect,browser} from'@playwright/test';
+import { text } from 'node:stream/consumers';
 
 
 // test('login test',async({browser})=>{
@@ -78,10 +79,12 @@ test('login test2',async({browser})=>{
     await page.locator("#userEmail").fill(email);
     await page.locator("#userPassword").fill('Password@123');
     await page.locator("#login").click();
-    await page.waitForLoadState('networkidle');
+    //await page.waitForLoadState('networkidle');
+    await page.locator('.card-body').last().waitFor();
     const header=await page.locator('.card-body').allTextContents();
     console.log(header);
     for(let i=0;i<header.length;i++){
+
         let headerText=await page.locator('.card-body').nth(i).locator('b').textContent();
         if(headerText==='ZARA COAT 3'){
             await page.locator('.card-body').nth(i).getByText('ADD TO CART').click();
@@ -99,6 +102,41 @@ test('login test2',async({browser})=>{
         }   
     }
 
+     await expect(page.locator('.user__name label')).toHaveText('s1a112232@gmail.com');
+     await page.locator('[placeholder="Select Country"]').type('ind');
+     await(page.locator('.form-group section button')).last().waitFor();
+     const Country= await(page.locator('.form-group section button')).allTextContents();
+     console.log(Country);
+     for(let i=0;i<Country.length;i++)
+    {
+        let contrytext=await(page.locator('.form-group section button')).nth(i).textContent();
+        console.log('contry',contrytext); 
+      
+     if(contrytext===" India")
+     {
+        await(page.locator('.form-group section button')).nth(i).click()
+        break;
+     }
+    }
+    await page.locator('.action__submit').click();
+    
+    await expect(page.locator('.hero-primary')).toHaveText(' Thankyou for the order. ');
 
-  
-    })
+    const orderCode=await page.locator('.em-spacer-1 .ng-star-inserted').textContent();
+    await page.locator('[routerlink="/dashboard/myorders"]').first().click();    
+    await page.locator('tbody th').last().waitFor();
+    const orderIDS=await page.locator('tbody tr th').allTextContents();
+    for(let i=0;i<orderIDS.length;i++)
+    { 
+        console.log(orderIDS[i]," : ",orderCode);
+        
+        if(orderCode.includes(orderIDS[i]))
+        {
+           await page.locator('tbody tr').nth(i).locator('button').first().click();
+           break;
+        }
+      
+    }
+    await expect(page.locator('.email-wrapper .email-container .email-title')).toHaveText(' order summary ');
+
+})
